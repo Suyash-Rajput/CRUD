@@ -1,7 +1,7 @@
 import json
 import uvicorn
-from  crud.tables.model import product_details
-from crud.tables.schema import user 
+from  crud.model.product_details import product_details
+from crud.schema.user import user 
 from crud.config.db import Connection
 from fastapi import FastAPI
 
