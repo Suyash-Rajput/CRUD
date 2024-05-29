@@ -16,7 +16,7 @@ services:
   web:
     build: .
     ports:
-      - "8000:8000"
+      - "8000:8000"  # Change port mapping from 8000 to 5000
     depends_on:
       - db
     environment:
