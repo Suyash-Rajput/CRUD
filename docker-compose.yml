@@ -1,26 +1,21 @@
-version: '3.8'
+version: '3'
 
 services:
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: fastapi_db
-      MYSQL_USER: fastapi_user
-      MYSQL_PASSWORD: fastapi_password
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-
   web:
     build: .
     ports:
-      - "8000:8000" 
+      - "8000:8000"
+    environment:
+      DATABASE_URL: "mysql+pymysql://user:password@db:3306/mydatabase"
     depends_on:
       - db
-    environment:
-      DATABASE_URL: "mysql+mysqldb://fastapi_user:fastapi_password@3306/fastapi_db"
 
-volumes:
-  mysql_data:
+  db:
+    image: "mysql:latest"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"
