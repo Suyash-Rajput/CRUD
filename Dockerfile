@@ -5,7 +5,6 @@ WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
-ENV DATABASE_URL="mysql+mysqldb://fastapi_user:fastapi_password@10000/fastapi_db"
 
 EXPOSE 8000
 
