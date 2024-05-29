@@ -12,21 +12,15 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "8000:8000" 
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     environment:
-      DATABASE_URL: "mysql+pymysql://fastapi_user:fastapi_password@db/fastapi_db"  # Correct dialect
+      DATABASE_URL: "mysql+mysqldb://fastapi_user:fastapi_password@db/fastapi_db"
 
 volumes:
   mysql_data:
